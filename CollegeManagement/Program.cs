@@ -1,4 +1,5 @@
 ﻿using CollegeManagement.Professores;
+using CollegeManagement.Turmas;
 
 List<ProfessoresModelo> _listaDeProfessores = new List<ProfessoresModelo>()
 {
@@ -6,6 +7,7 @@ List<ProfessoresModelo> _listaDeProfessores = new List<ProfessoresModelo>()
     new ProfessoresModelo("Geremias", "031 31 311", "Matematica"),
     new ProfessoresModelo("Mariana", "041 41 411", "Portugues"),
 };
+#region Menu Principal
 void GerenciamentoDeProfessores()
 {
     char opcao = '0';
@@ -81,11 +83,6 @@ void LocalizarProfessor()
             }
         }
     }
-    
-    //return _listaDeProfessores.Where(_listaDeProfessores => _listaDeProfessores.Cpf == cpf).FirstOrDefault();
-
-    //Console.WriteLine("Encontrado");
-
     Console.ReadKey();
 }
 
@@ -153,7 +150,96 @@ void NovoProfessor()
     Console.ReadKey();
     return;
 }
+#endregion
+
+void GerenciamentoDeAlunos()
+{
+    char opcao = '0';
+
+    while (opcao != '4')
+    {
+        Console.Clear();
+        Console.WriteLine("=============================");
+        Console.WriteLine("===  COLEGIO MODELO 2024  ===");
+        Console.WriteLine("===GERENCIAMENTO DE ALUNOS===");
+        Console.WriteLine("=============================");
+        Console.WriteLine("\n\n");
+
+        Console.WriteLine("DIGITE A OPÇÃO DESEJADA");
+        Console.WriteLine("=== 1 - Cadastrar Aluno        ===");
+        Console.WriteLine("=== 2 - Lista de Alunos        ===");
+        Console.WriteLine("=== 3 - Remover Aluno          ===");
+        Console.WriteLine("=== 4 - Localizar Aluno        ===");
+        Console.WriteLine("=== 5 - Menu Principal         ===");
+
+        opcao = Console.ReadLine()[0];
+
+        if (opcao != '6')
+        {
+            switch (opcao)
+            {
+                case '1':
+                    NovoAluno();
+                    break;
+                case '2':
+                    ListarDeAlunos();
+                    break;
+                case '3':
+                    RemoverAluno();
+                    break;
+                case '4':
+                    LocalizarAluno();
+                    break;
+                case '5':
+                    MenuPrincipal();
+                    break;
+                default:
+                    Console.WriteLine("Opção não implementada");
+                    break;
+            }
+        }
+    }
 
 
 
-GerenciamentoDeProfessores();
+}
+
+
+//GerenciamentoDeProfessores();
+
+void NovoAluno()
+{
+    List<SobreAlunos> listaDeAlunos = new List<SobreAlunos>();
+
+    Console.Write("Nome do Aluno: ");
+    string nome = Console.ReadLine();
+
+    Console.Write("Idade: ");
+    int idade = int.Parse(Console.ReadLine());
+
+    Console.Write("Nome da mãe: ");
+    string nomeMae = Console.ReadLine();
+
+    Console.Write("Nome do pai: ");
+    string nomePai = Console.ReadLine();
+
+    Console.Write("Contato: ");
+    long contato = long.Parse(Console.ReadLine());
+
+    var alunoNovo = new SobreAlunos(nome, idade, nomeMae, nomePai, contato);
+    
+    listaDeAlunos.Add(alunoNovo);
+
+    Console.WriteLine("Aluno Cadastrado");
+    Console.WriteLine();
+    Console.WriteLine("Alunos Cadastrados:");
+    Console.WriteLine();
+    
+    foreach (var item in listaDeAlunos)
+    {
+        item.ToString();
+    }
+    Console.ReadKey();
+}
+
+NovoAluno();
