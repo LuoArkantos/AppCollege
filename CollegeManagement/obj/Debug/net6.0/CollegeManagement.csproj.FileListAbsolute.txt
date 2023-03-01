@@ -1,0 +1,15 @@
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\CollegeManagement.csproj.AssemblyReference.cache
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\CollegeManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\CollegeManagement.AssemblyInfoInputs.cache
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\CollegeManagement.AssemblyInfo.cs
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\CollegeManagement.csproj.CoreCompileInputs.cache
+C:\Users\luizf\AppCollege\CollegeManagement\bin\Debug\net6.0\CollegeManagement.exe
+C:\Users\luizf\AppCollege\CollegeManagement\bin\Debug\net6.0\CollegeManagement.deps.json
+C:\Users\luizf\AppCollege\CollegeManagement\bin\Debug\net6.0\CollegeManagement.runtimeconfig.json
+C:\Users\luizf\AppCollege\CollegeManagement\bin\Debug\net6.0\CollegeManagement.dll
+C:\Users\luizf\AppCollege\CollegeManagement\bin\Debug\net6.0\CollegeManagement.pdb
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\CollegeManagement.dll
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\refint\CollegeManagement.dll
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\CollegeManagement.pdb
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\CollegeManagement.genruntimeconfig.cache
+C:\Users\luizf\AppCollege\CollegeManagement\obj\Debug\net6.0\ref\CollegeManagement.dll
