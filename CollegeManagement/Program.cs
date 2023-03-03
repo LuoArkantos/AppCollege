@@ -1,5 +1,6 @@
 ﻿using CollegeManagement.Professores;
 using CollegeManagement.Turmas;
+using System.Security.Cryptography;
 
 List<ProfessoresModelo> _listaDeProfessores = new List<ProfessoresModelo>()
 {
@@ -7,6 +8,14 @@ List<ProfessoresModelo> _listaDeProfessores = new List<ProfessoresModelo>()
     new ProfessoresModelo("Geremias", "031 31 311", "Matematica"),
     new ProfessoresModelo("Mariana", "041 41 411", "Portugues"),
 };
+List<Alunos> _listaDeAlunos = new List<Alunos>()
+{
+    new Alunos("Mario", 15, "12345", "Maria","Jose",62981723123),
+    new Alunos("Carlos", 15, "54321", "Clara","Marcos",62981723123),
+    new Alunos("Pedro", 15, "22222", "Ana","Jeremias",62981723123),
+    new Alunos("Junior", 15, "33333", "Pietra","Algusto",62981723123),
+};
+
 #region Menu Principal
 void GerenciamentoDeProfessores()
 {
@@ -26,11 +35,11 @@ void GerenciamentoDeProfessores()
         Console.WriteLine("=== 2 - Lista de Professores   ===");
         Console.WriteLine("=== 3 - Remover Professor(a)   ===");
         Console.WriteLine("=== 4 - Localizar Professor(a) ===");
-        Console.WriteLine("=== 5 - Fechar Aplicação       ===");
+        Console.WriteLine("=== 5 - Menu Principal         ===");
 
         opcao = Console.ReadLine()[0];
 
-        if (opcao != '5')
+        if (opcao != '6')
         {
             switch (opcao)
             {
@@ -45,6 +54,9 @@ void GerenciamentoDeProfessores()
                     break;
                 case '4':
                     LocalizarProfessor();
+                    break;
+                case '5':
+                    MenuPrincipal();
                     break;
                 default:
                     Console.WriteLine("Opção não implementada");
@@ -189,6 +201,7 @@ void GerenciamentoDeAlunos()
                     break;
                 case '4':
                     LocalizarAluno();
+                    GerenciamentoDeAlunos();
                     break;
                 case '5':
                     MenuPrincipal();
@@ -199,23 +212,110 @@ void GerenciamentoDeAlunos()
             }
         }
     }
-
-
-
 }
+void LocalizarAluno()
+{
+    Console.Clear();
+    Console.WriteLine("=============================");
+    Console.WriteLine("===  COLEGIO MODELO 2024  ===");
+    Console.WriteLine("===     BUSCAR  ALUNO     ===");
+    Console.WriteLine("=============================");
+    Console.WriteLine("\n\n");
 
+    Console.Write("\nDigite o CPF do aluno para busca: ");
+    string cpf = Console.ReadLine();
 
-//GerenciamentoDeProfessores();
+    if (_listaDeAlunos != null)
+    {
+        
+        foreach(var item in _listaDeAlunos)
+        {
+            if (item.CpfAluno.Equals(cpf))
+            {
+                Console.WriteLine("===== DADOS DE ALUNO ENCONTRADOS =====\n");
+                item.ToString();
+            }
+        }
+    }
+    else
+    {
+        Console.WriteLine("--- Lista de alunos vazia ---");
+    }
+    Console.ReadKey();
+}
+void RemoverAluno()
+{
+    Alunos aluno = null;
 
+    Console.Clear();
+    Console.WriteLine("=============================");
+    Console.WriteLine("===  COLEGIO MODELO 2024  ===");
+    Console.WriteLine("===     REMOVER  ALUNO    ===");
+    Console.WriteLine("=============================");
+    Console.WriteLine("\n\n");
+
+    Console.Write("Digite o CPF do aluno para remoção: ");
+    string cpf = Console.ReadLine();
+    Console.WriteLine();
+
+    foreach (var item in _listaDeAlunos)
+    {
+        if (item.CpfAluno.Equals(cpf))
+        {
+            aluno = item;
+        }
+    }
+    if (aluno != null)
+    {
+        _listaDeAlunos.Remove(aluno);
+        Console.WriteLine("--- Aluno Removido ---");
+    }
+    else
+    {
+        Console.WriteLine("--- Aluno não encontrado ---");
+    }
+    Console.ReadKey();
+}
+void ListarDeAlunos()
+{
+    Console.Clear();
+    Console.WriteLine("=============================");
+    Console.WriteLine("===  COLEGIO MODELO 2024  ===");
+    Console.WriteLine("===    LISTA DE ALUNOS    ===");
+    Console.WriteLine("=============================");
+    Console.WriteLine("\n\n");
+
+    if (_listaDeAlunos.Count != 0)
+    {
+        foreach (var aluno in _listaDeAlunos)
+        {
+            aluno.ToString();
+        }
+    }
+    else
+    {
+        Console.WriteLine("...A Lista não retornou nenhum dado...");
+    }
+    
+    Console.ReadKey();
+}
 void NovoAluno()
 {
-    List<SobreAlunos> listaDeAlunos = new List<SobreAlunos>();
+    Console.Clear();
+    Console.WriteLine("=============================");
+    Console.WriteLine("===  COLEGIO MODELO 2024  ===");
+    Console.WriteLine("=== CADASTRO DE NOVO ALUNO===");
+    Console.WriteLine("=============================");
+    Console.WriteLine("\n\n");
 
     Console.Write("Nome do Aluno: ");
     string nome = Console.ReadLine();
 
     Console.Write("Idade: ");
     int idade = int.Parse(Console.ReadLine());
+    
+    Console.Write("CPF: ");
+    string cpf = Console.ReadLine();
 
     Console.Write("Nome da mãe: ");
     string nomeMae = Console.ReadLine();
@@ -226,20 +326,59 @@ void NovoAluno()
     Console.Write("Contato: ");
     long contato = long.Parse(Console.ReadLine());
 
-    var alunoNovo = new SobreAlunos(nome, idade, nomeMae, nomePai, contato);
+    var alunoNovo = new Alunos(nome, idade, cpf, nomeMae, nomePai, contato);
     
-    listaDeAlunos.Add(alunoNovo);
+    _listaDeAlunos.Add(alunoNovo);
 
-    Console.WriteLine("Aluno Cadastrado");
-    Console.WriteLine();
-    Console.WriteLine("Alunos Cadastrados:");
+    Console.WriteLine("--- Aluno Cadastrado com sucesso ---");
     Console.WriteLine();
     
-    foreach (var item in listaDeAlunos)
-    {
-        item.ToString();
-    }
+    //foreach (var item in _listaDeAlunos)
+    //{
+    //    item.ToString();
+    //}
     Console.ReadKey();
 }
 
-NovoAluno();
+//GerenciamentoDeAlunos();
+
+void MenuPrincipal()
+{
+    Console.Clear();
+    char opcao;
+    Console.WriteLine("===============================================");
+    Console.WriteLine("==========      MENU  PRINCIPAL      ==========");
+    Console.WriteLine("==========    COLÉGIO MODELO 2024    ==========");
+    Console.WriteLine("===============================================");
+    Console.WriteLine("");
+    Console.WriteLine("===============================================");
+    Console.WriteLine("==========  O QUE VOCÊ QUER GERENCIAR? ========");
+    Console.WriteLine("==========                             ========");
+    Console.WriteLine("==========  1- PROFESSORES             ========");
+    Console.WriteLine("==========  2- ALUNOS                  ========");
+    Console.WriteLine("==========  3- Fechar Aplicação        ========");
+    Console.WriteLine("==========                             ========");
+    Console.WriteLine("===============================================\n\n");
+
+    Console.Write("Digita a opção: ");
+    opcao = Console.ReadLine()[0];
+    while (opcao != '4')
+    {
+        switch (opcao)
+        {
+            case '1':
+                GerenciamentoDeProfessores();
+                break;
+            case '2':
+                GerenciamentoDeAlunos();
+                break;
+            case '3':
+                break;
+            default:
+                Console.WriteLine("Opção não implementada");
+                break;
+        };
+    }
+};
+
+MenuPrincipal();
